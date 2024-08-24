@@ -24,7 +24,7 @@ class _ProductScreenState extends State<ProductScreen> {
         listener: (context, state) {
           if (state is ProductErrorLoadingState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errorMessage)),
+              SnackBar(content: Text('Failed to load products: ${state.errorMessage}')), // Display detailed error
             );
           }
         },

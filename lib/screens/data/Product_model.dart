@@ -1,3 +1,4 @@
+
 class ProductsModel {
   ProductsModel({
     required this.products,
@@ -49,24 +50,24 @@ class Product {
   });
 
   final int? id;
-  final String title;
+  final String? title;
   final String? description;
   final String? category;
   final double? price;
   final double? discountPercentage;
   final double? rating;
-  final int? stock;
+  final double? stock;
   final List<String> tags;
   final String? brand;
   final String? sku;
-  final int? weight;
+  final double? weight;
   final Dimensions? dimensions;
   final String? warrantyInformation;
   final String? shippingInformation;
   final String? availabilityStatus;
   final List<Review> reviews;
   final String? returnPolicy;
-  final int? minimumOrderQuantity;
+  final double? minimumOrderQuantity;
   final Meta? meta;
   final List<String> images;
   final String? thumbnail;
@@ -77,14 +78,14 @@ class Product {
       title: json["title"],
       description: json["description"],
       category: json["category"],
-      price: json["price"],
-      discountPercentage: json["discountPercentage"],
-      rating: json["rating"],
+      price: (json["price"] as num).toDouble(),  // تحويل int إلى double إذا لزم الأمر
+      discountPercentage: (json["discountPercentage"] as num).toDouble(),  // تحويل int إلى double إذا لزم الأمر
+      rating: (json["rating"] as num).toDouble(),  // تحويل int إلى double إذا لزم الأمر
       stock: json["stock"],
       tags: json["tags"] == null ? [] : List<String>.from(json["tags"]!.map((x) => x)),
       brand: json["brand"],
       sku: json["sku"],
-      weight: json["weight"],
+      weight: (json["weight"] as num).toDouble(),  // تحويل int إلى double إذا لزم الأمر
       dimensions: json["dimensions"] == null ? null : Dimensions.fromJson(json["dimensions"]),
       warrantyInformation: json["warrantyInformation"],
       shippingInformation: json["shippingInformation"],
@@ -97,6 +98,7 @@ class Product {
       thumbnail: json["thumbnail"],
     );
   }
+
 
 }
 
@@ -154,7 +156,7 @@ class Review {
     required this.reviewerEmail,
   });
 
-  final int? rating;
+  final double? rating;
   final String? comment;
   final DateTime? date;
   final String? reviewerName;
